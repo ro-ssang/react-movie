@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from './assets/styles/GlobalStyle';
 import { defaultTheme } from './assets/styles/theme';
-import Home from './pages/Home';
-import Tv from './pages/Tv';
+import Home from './components/templates/Home';
+import Tv from './components/templates/Tv';
 
 function App() {
   return (
