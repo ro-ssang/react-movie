@@ -11,6 +11,9 @@ const Wrapper = styled.div`
     border-radius: 50px;
     font-size: ${({ theme }) => theme.fonts.size.xs};
     background-color: ${({ theme }) => theme.colors.blackLighten2};
+    &::placeholder {
+      color: ${({ theme }) => theme.colors.white};
+    }
   }
 `;
 
