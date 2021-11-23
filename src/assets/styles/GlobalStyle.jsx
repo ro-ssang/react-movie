@@ -10,10 +10,12 @@ const GlobalStyle = createGlobalStyle`
 
   ${({ theme }) => {
     return css`
-      body {
+      body,
+      input {
+        color: ${theme.colors.white};
         font-family: ${theme.fonts.family.base};
         font-size: ${theme.fonts.size.base};
-        font-weight: ${theme.fonts.weight.bold};
+        font-weight: ${theme.fonts.weight.normal};
       }
     `;
   }};
