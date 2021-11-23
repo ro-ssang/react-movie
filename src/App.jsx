@@ -6,6 +6,7 @@ import { defaultTheme } from './assets/styles/theme';
 import Home from './components/templates/Home';
 import MovieDetail from './components/templates/MovieDetail';
 import Tv from './components/templates/Tv';
+import TvDetail from './components/templates/TvDetail';
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
       <Router>
         <Route path="/" exact component={Home} />
         <Route path="/movie/:movieId" exact component={MovieDetail} />
-        <Route path="/tv" component={Tv} />
+        <Route path="/tv" exact component={Tv} />
+        <Route path="/tv/:tvId" component={TvDetail} />
       </Router>
     </ThemeProvider>
   );
