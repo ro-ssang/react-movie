@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import Container from '../atoms/Container';
 import Row from '../atoms/Row';
 import RankItem from '../atoms/RankItem';
+import { withRouter } from 'react-router';
+import { getDetailPath } from '../../lib';
+import { POSTER_BASE_URL } from '../../constants';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.blackLighten1};
@@ -18,10 +21,13 @@ const Cont = styled.div`
     overflow: hidden;
     overflow-x: scroll;
     display: flex;
+    margin-top: 28px;
   }
 `;
 
-function TopMovies({ sectionTitle, data }) {
+function TopMovies({ match, sectionTitle, data }) {
+  const slicedData = data.slice(0, 10);
+
   return (
     <Wrapper>
       <Container>
@@ -29,7 +35,18 @@ function TopMovies({ sectionTitle, data }) {
           <Cont>
             <h2>{sectionTitle}</h2>
             <ul>
-              <RankItem link="" title="" rank={0} poster_path="" />
+              {slicedData.map((item, index) => {
+                const { id, title, poster_path } = item;
+                return (
+                  <RankItem
+                    key={id}
+                    link={getDetailPath(match.path) + '/' + id}
+                    title={title}
+                    rank={index}
+                    poster_path={POSTER_BASE_URL + poster_path}
+                  />
+                );
+              })}
             </ul>
           </Cont>
         </Row>
@@ -38,4 +55,4 @@ function TopMovies({ sectionTitle, data }) {
   );
 }
 
-export default TopMovies;
+export default withRouter(TopMovies);

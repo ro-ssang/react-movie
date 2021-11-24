@@ -57,10 +57,10 @@ function Home() {
       <Main>
         {error && <div>에러 발생</div>}
         {loading && <Loader />}
-        {!loading && popularData && (
+        {!loading && (
           <>
             {detailData && <DetailMovie isDetailPage={false} data={detailData} />}
-            <TopMovies sectionTitle="TOP10 컨텐츠" />
+            {popularData && <TopMovies sectionTitle="TOP10 컨텐츠" data={popularData} />}
             {nowPlayingData && <MovieVideos sectionTitle="상영중인 영화" data={nowPlayingData} />}
             {upcomingData && <MovieVideos sectionTitle="개봉 예정 영화" data={upcomingData} />}
             {topRatedData && <MovieVideos sectionTitle="평점 높은 영화" data={topRatedData} />}
