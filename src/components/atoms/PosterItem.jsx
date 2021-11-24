@@ -33,7 +33,9 @@ const Wrapper = styled.li`
         display: flex;
       }
     }
-
+    img {
+      height: 100%;
+    }
     em {
       position: absolute;
       left: 0;

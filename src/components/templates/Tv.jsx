@@ -13,6 +13,7 @@ function Tv() {
   const [popularData, setPopularData] = useState(null);
   const [detailData, setDetailData] = useState(null);
   const [topRatedData, setTopRatedData] = useState(null);
+  const [airingTodayData, setAiringTodayData] = useState(null);
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -26,9 +27,13 @@ function Tv() {
         const {
           data: { results: topRatedResults },
         } = await tvApi.getTopRated();
+        const {
+          data: { results: airingTodayResults },
+        } = await tvApi.getAiringToday();
         setPopularData(popularResults);
         setDetailData(detailResults);
         setTopRatedData(topRatedResults);
+        setAiringTodayData(airingTodayResults);
       } catch (error) {
         console.error(error);
         setError(true);
@@ -50,6 +55,7 @@ function Tv() {
           <>
             {detailData && <DetailTv isDetailPage={false} data={detailData} />}
             {topRatedData && <TvVideos sectionTitle="평점 높은 TV 프로그램" data={topRatedData} />}
+            {airingTodayData && <TvVideos sectionTitle="방송중인 TV 프로그램" data={airingTodayData} />}
           </>
         )}
       </Main>

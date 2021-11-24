@@ -20,4 +20,5 @@ export const tvApi = {
   getPopular: () => instance.get('/tv/popular'),
   getDetail: (tvId) => instance.get(`/tv/${tvId}`),
   getTopRated: () => instance.get('/tv/top_rated'),
+  getAiringToday: () => instance.get('/tv/airing_today'),
 };
