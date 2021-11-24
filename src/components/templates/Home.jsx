@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { movieApi } from '../../lib/api';
+import Loader from '../atoms/Loader';
 import Detail from '../modules/Detail';
 import Header from '../modules/Header';
 
@@ -38,7 +39,7 @@ function Home() {
       <Header />
       <Main>
         {error && <div>에러 발생</div>}
-        {loading && <div>로딩중...</div>}
+        {loading && <Loader />}
         {!loading && popularData && detailData && <Detail isDetailPage={false} data={detailData} />}
       </Main>
     </>
