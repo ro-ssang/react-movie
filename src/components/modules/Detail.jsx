@@ -34,7 +34,6 @@ const Wrapper = styled.section`
 const Cont = styled.div`
   display: flex;
   padding: 97px 0 123px;
-  min-height: ${({ fullPage }) => fullPage && '100vh'};
 `;
 const Poster = styled.div`
   min-width: 425px;
@@ -116,7 +115,7 @@ function Detail({ match, isDetailPage, data }) {
     <Wrapper rank="01" showNumber={!isDetailPage} backdrop_path={BACKDROP_BASE_URL + backdrop_path}>
       <Container>
         <Row>
-          <Cont fullPage={isDetailPage}>
+          <Cont>
             {data && (
               <>
                 <Poster>
