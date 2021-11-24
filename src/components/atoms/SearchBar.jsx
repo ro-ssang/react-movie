@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
+import { withRouter } from 'react-router';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -17,8 +18,29 @@ const Wrapper = styled.div`
   }
 `;
 
-function SearchBar() {
-  return <Wrapper>{<input type="text" placeholder="검색어를 입력하세요!" />}</Wrapper>;
+function SearchBar({ history }) {
+  const [keyword, setKeyword] = useState('');
+
+  const onChangeInput = useCallback((e) => {
+    setKeyword(e.target.value);
+  }, []);
+
+  const onSubmitForm = useCallback(
+    (e) => {
+      e.preventDefault();
+      const path = `/search?keyword=${keyword}`;
+      history.push(path);
+    },
+    [history, keyword]
+  );
+
+  return (
+    <Wrapper>
+      <form onSubmit={onSubmitForm}>
+        <input type="text" placeholder="검색어를 입력하세요!" value={keyword} onChange={onChangeInput} />
+      </form>
+    </Wrapper>
+  );
 }
 
-export default SearchBar;
+export default withRouter(SearchBar);

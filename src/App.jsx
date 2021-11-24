@@ -5,6 +5,7 @@ import GlobalStyle from './assets/styles/GlobalStyle';
 import { defaultTheme } from './assets/styles/theme';
 import Home from './components/templates/Home';
 import MovieDetail from './components/templates/MovieDetail';
+import Search from './components/templates/Search';
 import Tv from './components/templates/Tv';
 import TvDetail from './components/templates/TvDetail';
 
@@ -17,6 +18,7 @@ function App() {
         <Route path="/movie/:movieId" exact component={MovieDetail} />
         <Route path="/tv" exact component={Tv} />
         <Route path="/tv/:tvId" component={TvDetail} />
+        <Route path="/search" component={Search} />
       </Router>
     </ThemeProvider>
   );

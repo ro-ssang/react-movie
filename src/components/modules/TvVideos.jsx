@@ -30,7 +30,7 @@ const Cont = styled.div`
   }
 `;
 
-function TvVideos({ match, sectionTitle, data }) {
+function TvVideos({ match, sectionTitle, data, type }) {
   return (
     <Wrapper>
       <Container>
@@ -44,7 +44,7 @@ function TvVideos({ match, sectionTitle, data }) {
                   return (
                     <PosterItem
                       key={id}
-                      link={getDetailPath(match.path) + '/' + id}
+                      link={getDetailPath(match.path, type) + '/' + id}
                       poster_path={POSTER_BASE_URL + poster_path}
                       title={original_name}
                       release_date={first_air_date.replace(/-/g, '.')}

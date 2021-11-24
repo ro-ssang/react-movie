@@ -14,6 +14,7 @@ export const movieApi = {
   getNowPlaying: () => instance.get('/movie/now_playing', { params: { region: 'KR' } }),
   getUpcoming: () => instance.get('/movie/upcoming', { params: { region: 'KR' } }),
   getTopRated: () => instance.get('/movie/top_rated', { params: { region: 'KR' } }),
+  getSearch: (keyword) => instance.get('/search/movie', { params: { query: keyword } }),
 };
 
 export const tvApi = {
@@ -22,4 +23,5 @@ export const tvApi = {
   getTopRated: () => instance.get('/tv/top_rated'),
   getAiringToday: () => instance.get('/tv/airing_today'),
   getOnTheAir: () => instance.get('/tv/on_the_air'),
+  getSearch: (keyword) => instance.get('/search/tv', { params: { query: keyword } }),
 };

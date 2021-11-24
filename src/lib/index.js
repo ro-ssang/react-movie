@@ -13,12 +13,14 @@ export function countStars(score) {
   return result;
 }
 
-export function getDetailPath(currentPath) {
+export function getDetailPath(currentPath, type) {
   switch (currentPath) {
     case '/':
       return '/movie';
     case '/tv':
       return '/tv';
+    case '/search':
+      return type === 'movie' ? '/movie' : '/tv';
     default:
       throw new Error('해당 경로가 없습니다. 경로를 확인하거나 추가 해주세요!');
   }

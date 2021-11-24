@@ -30,7 +30,7 @@ const Cont = styled.div`
   }
 `;
 
-function MovieVideos({ match, sectionTitle, data }) {
+function MovieVideos({ match, sectionTitle, data, type }) {
   return (
     <Wrapper>
       <Container>
@@ -44,7 +44,7 @@ function MovieVideos({ match, sectionTitle, data }) {
                   return (
                     <PosterItem
                       key={id}
-                      link={getDetailPath(match.path) + '/' + id}
+                      link={getDetailPath(match.path, type) + '/' + id}
                       poster_path={POSTER_BASE_URL + poster_path}
                       title={title}
                       release_date={release_date.replace(/-/g, '.')}

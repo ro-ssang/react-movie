@@ -5,7 +5,7 @@ const Wrapper = styled.div`
   margin: 0 auto;
   width: 100%;
   max-width: 1600px;
-  background: rgba(255, 255, 255, 0.3);
+  /* background: rgba(255, 255, 255, 0.3); */
 `;
 
 function Container({ children }) {
