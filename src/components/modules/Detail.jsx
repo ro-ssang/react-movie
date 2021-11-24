@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
+import { BACKDROP_BASE_URL, POSTER_BASE_URL } from '../../constants';
 import { getDetailPath } from '../../lib';
 import Container from '../atoms/Container';
 import Rating from '../atoms/Rating';
@@ -11,6 +12,10 @@ const Wrapper = styled.section`
   overflow: hidden;
   position: relative;
   background-color: ${({ theme }) => theme.colors.black};
+  background-image: url(${({ backdrop_path }) => backdrop_path});
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
   ${({ showNumber }) =>
     showNumber &&
     css`
@@ -39,12 +44,6 @@ const Info = styled.div`
   position: relative;
   flex-grow: 1;
   margin-left: 17px;
-
-  h3 {
-    padding-top: 3px;
-    font-size: ${({ theme }) => theme.fonts.size['2x']};
-  }
-
   ul {
     display: flex;
     margin-top: 12px;
@@ -66,6 +65,20 @@ const Info = styled.div`
       }
     }
   }
+`;
+const Title = styled.h3`
+  padding-top: 3px;
+  font-size: ${({ theme }) => theme.fonts.size['2x']};
+  ${({ multiline }) =>
+    multiline &&
+    css`
+      overflow: hidden;
+      display: -webkit-box;
+      max-height: 161px;
+      text-overflow: ellipsis;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    `};
 `;
 const Description = styled.p`
   margin-top: 26px;
@@ -95,27 +108,32 @@ const ButtonLink = styled(Link)`
   font-weight: ${({ theme }) => theme.fonts.weight.light};
 `;
 
-function Detail({ match, isDetailPage }) {
+function Detail({ match, isDetailPage, data }) {
+  const { id, title, release_date, runtime, genres, vote_average, overview, poster_path, backdrop_path } = data;
+
   return (
-    <Wrapper rank="01" showNumber={!isDetailPage}>
+    <Wrapper rank="01" showNumber={!isDetailPage} backdrop_path={BACKDROP_BASE_URL + backdrop_path}>
       <Container>
         <Row>
           <Cont>
-            <Poster></Poster>
-            <Info>
-              <h3>이터널스</h3>
-              <ul>
-                <li>2021</li>
-                <li>157분</li>
-                <li>액션/모험/SF</li>
-              </ul>
-              <Rating score={5.7} />
-              <Description multiline={!isDetailPage}>
-                수 천년에 걸쳐 그 모습을 드러내지 않고 살아온 불멸의 히어로들이 "어벤져스: 엔드게임" 이후 인류의 가장
-                오래된 적 '데비안츠'에 맞서기 위해 다시 힘을 합치면서 벌어지는 이야기
-              </Description>
-              {!isDetailPage && <ButtonLink to={getDetailPath(match.path) + '/1'}>상세정보</ButtonLink>}
-            </Info>
+            {data && (
+              <>
+                <Poster>
+                  <img src={POSTER_BASE_URL + poster_path} alt={title} />
+                </Poster>
+                <Info>
+                  <Title multiline={!isDetailPage}>{title}</Title>
+                  <ul>
+                    <li>{release_date.substring(0, 4)}</li>
+                    <li>{runtime}분</li>
+                    <li>{genres.map((obj) => obj.name).join('/')}</li>
+                  </ul>
+                  <Rating score={vote_average} />
+                  <Description multiline={!isDetailPage}>{overview}</Description>
+                  {!isDetailPage && <ButtonLink to={getDetailPath(match.path) + '/' + id}>상세정보</ButtonLink>}
+                </Info>
+              </>
+            )}
           </Cont>
         </Row>
       </Container>
