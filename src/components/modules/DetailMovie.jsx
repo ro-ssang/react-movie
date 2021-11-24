@@ -5,6 +5,7 @@ import styled, { css } from 'styled-components';
 import { BACKDROP_BASE_URL, POSTER_BASE_URL } from '../../constants';
 import { getDetailPath } from '../../lib';
 import Container from '../atoms/Container';
+import Poster from '../atoms/Poster';
 import Rating from '../atoms/Rating';
 import Row from '../atoms/Row';
 
@@ -34,11 +35,7 @@ const Wrapper = styled.section`
 const Cont = styled.div`
   display: flex;
   padding: 97px 0 123px;
-`;
-const Poster = styled.div`
-  min-width: 425px;
-  height: 637px;
-  background-color: #ccc;
+  min-height: ${({ fullpage }) => fullpage && '100vh'};
 `;
 const Info = styled.div`
   position: relative;
@@ -108,19 +105,17 @@ const ButtonLink = styled(Link)`
   font-weight: ${({ theme }) => theme.fonts.weight.light};
 `;
 
-function Detail({ match, isDetailPage, data }) {
+function DetailMovie({ match, isDetailPage, data }) {
   const { id, title, release_date, runtime, genres, vote_average, overview, poster_path, backdrop_path } = data;
 
   return (
     <Wrapper rank="01" showNumber={!isDetailPage} backdrop_path={BACKDROP_BASE_URL + backdrop_path}>
       <Container>
         <Row>
-          <Cont>
+          <Cont fullpage={isDetailPage}>
             {data && (
               <>
-                <Poster>
-                  <img src={POSTER_BASE_URL + poster_path} alt={title} />
-                </Poster>
+                <Poster poster_path={POSTER_BASE_URL + poster_path} alt={title} />
                 <Info>
                   <Title multiline={!isDetailPage}>{title}</Title>
                   <ul>
@@ -141,4 +136,4 @@ function Detail({ match, isDetailPage, data }) {
   );
 }
 
-export default withRouter(Detail);
+export default withRouter(DetailMovie);

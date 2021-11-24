@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { movieApi } from '../../lib/api';
 import Loader from '../atoms/Loader';
-import Detail from '../modules/Detail';
+import DetailMovie from '../modules/DetailMovie';
 import Header from '../modules/Header';
 
 const Main = styled.main``;
@@ -40,7 +40,7 @@ function Home() {
       <Main>
         {error && <div>에러 발생</div>}
         {loading && <Loader />}
-        {!loading && popularData && detailData && <Detail isDetailPage={false} data={detailData} />}
+        {!loading && popularData && detailData && <DetailMovie isDetailPage={false} data={detailData} />}
       </Main>
     </>
   );

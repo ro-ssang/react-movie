@@ -5,11 +5,15 @@ const instance = axios.create({
   params: {
     api_key: process.env.REACT_APP_TMDB_API_KEY,
     language: 'ko',
-    region: 'KR',
   },
 });
 
 export const movieApi = {
-  getPopular: () => instance.get('/movie/popular'),
+  getPopular: () => instance.get('/movie/popular', { params: { region: 'KR' } }),
   getDetail: (movieId) => instance.get(`/movie/${movieId}`),
+};
+
+export const tvApi = {
+  getPopular: () => instance.get('/tv/popular'),
+  getDetail: (tvId) => instance.get(`/tv/${tvId}`),
 };

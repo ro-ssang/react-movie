@@ -3,7 +3,7 @@ import { withRouter } from 'react-router';
 import styled from 'styled-components';
 import { movieApi } from '../../lib/api';
 import Loader from '../atoms/Loader';
-import Detail from '../modules/Detail';
+import DetailMovie from '../modules/DetailMovie';
 import Header from '../modules/Header';
 
 const Main = styled.main``;
@@ -40,7 +40,7 @@ function MovieDetail({ match }) {
       <Main>
         {error && <div>에러 발생</div>}
         {loading && <Loader />}
-        {!loading && movieData && <Detail isDetailPage={true} data={movieData} />}
+        {!loading && movieData && <DetailMovie isDetailPage={true} data={movieData} />}
       </Main>
     </>
   );
