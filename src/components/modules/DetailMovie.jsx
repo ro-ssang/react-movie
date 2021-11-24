@@ -13,7 +13,8 @@ const Wrapper = styled.section`
   overflow: hidden;
   position: relative;
   background-color: ${({ theme }) => theme.colors.black};
-  background-image: url(${({ backdrop_path }) => backdrop_path});
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)),
+    url(${({ backdrop_path }) => backdrop_path});
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
