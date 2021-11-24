@@ -5,6 +5,7 @@ import Loader from '../atoms/Loader';
 import DetailMovie from '../modules/DetailMovie';
 import Header from '../modules/Header';
 import MovieVideos from '../modules/MovieVideos';
+import TopMovies from '../modules/TopMovies';
 
 const Main = styled.main``;
 
@@ -59,6 +60,7 @@ function Home() {
         {!loading && popularData && (
           <>
             {detailData && <DetailMovie isDetailPage={false} data={detailData} />}
+            <TopMovies sectionTitle="TOP10 컨텐츠" />
             {nowPlayingData && <MovieVideos sectionTitle="상영중인 영화" data={nowPlayingData} />}
             {upcomingData && <MovieVideos sectionTitle="개봉 예정 영화" data={upcomingData} />}
             {topRatedData && <MovieVideos sectionTitle="평점 높은 영화" data={topRatedData} />}

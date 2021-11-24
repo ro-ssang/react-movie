@@ -18,7 +18,7 @@ const Wrapper = styled.section`
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
-  /* filter: brightness(0.67); */
+
   ${({ showNumber }) =>
     showNumber &&
     css`

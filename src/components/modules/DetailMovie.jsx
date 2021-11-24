@@ -18,6 +18,7 @@ const Wrapper = styled.section`
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
+
   ${({ showNumber }) =>
     showNumber &&
     css`
