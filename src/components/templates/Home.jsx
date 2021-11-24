@@ -4,6 +4,7 @@ import { movieApi } from '../../lib/api';
 import Loader from '../atoms/Loader';
 import DetailMovie from '../modules/DetailMovie';
 import Header from '../modules/Header';
+import MovieVideos from '../modules/MovieVideos';
 
 const Main = styled.main``;
 
@@ -40,7 +41,12 @@ function Home() {
       <Main>
         {error && <div>에러 발생</div>}
         {loading && <Loader />}
-        {!loading && popularData && detailData && <DetailMovie isDetailPage={false} data={detailData} />}
+        {!loading && popularData && detailData && (
+          <>
+            <DetailMovie isDetailPage={false} data={detailData} />
+            <MovieVideos sectionTitle="인기있는 스트리밍" data="" />
+          </>
+        )}
       </Main>
     </>
   );
