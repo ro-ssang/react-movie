@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
+import { POSTER_BASE_URL } from '../../constants';
 import { getDetailPath } from '../../lib';
 import Container from '../atoms/Container';
 import PosterItem from '../atoms/PosterItem';
@@ -37,12 +38,19 @@ function MovieVideos({ match, sectionTitle, data }) {
           <Cont>
             <h2>{sectionTitle}</h2>
             <ul>
-              <PosterItem
-                link={getDetailPath(match.path) + '/' + 1}
-                poster_path=""
-                title="이터널스"
-                release_date="2021.10.05"
-              />
+              {data &&
+                data.map((item) => {
+                  const { id, title, poster_path, release_date } = item;
+                  return (
+                    <PosterItem
+                      key={id}
+                      link={getDetailPath(match.path) + '/' + id}
+                      poster_path={POSTER_BASE_URL + poster_path}
+                      title={title}
+                      release_date={release_date.replace(/-/g, '.')}
+                    />
+                  );
+                })}
             </ul>
           </Cont>
         </Row>

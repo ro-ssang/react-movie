@@ -11,6 +11,7 @@ const instance = axios.create({
 export const movieApi = {
   getPopular: () => instance.get('/movie/popular', { params: { region: 'KR' } }),
   getDetail: (movieId) => instance.get(`/movie/${movieId}`),
+  getNowPlaying: () => instance.get('/movie/now_playing', { params: { region: 'KR' } }),
 };
 
 export const tvApi = {

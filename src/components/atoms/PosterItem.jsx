@@ -8,10 +8,15 @@ const Wrapper = styled.li`
     margin-right: 22px;
   }
   h3 {
+    overflow: hidden;
     margin-top: 23px;
+    width: 202px;
     font-size: ${({ theme }) => theme.fonts.size.sm};
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   span {
+    display: inline-block;
     margin-top: 6px;
     font-size: ${({ theme }) => theme.fonts.size.xs};
     font-weight: ${({ theme }) => theme.fonts.weight.light};
@@ -38,6 +43,7 @@ const Wrapper = styled.li`
       justify-content: center;
       width: 100%;
       height: 100%;
+      background-color: ${({ theme }) => theme.colors.black};
       opacity: 0.67;
     }
   }

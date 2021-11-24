@@ -12,6 +12,7 @@ function Home() {
   const [loading, setLoading] = useState(false);
   const [popularData, setPopularData] = useState(null);
   const [detailData, setDetailData] = useState(null);
+  const [nowPlayingData, setNowPlayingData] = useState(null);
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -22,8 +23,12 @@ function Home() {
           data: { results: popularResults },
         } = await movieApi.getPopular();
         const { data: detailResults } = await movieApi.getDetail(popularResults[0].id);
+        const {
+          data: { results: nowPlayingResults },
+        } = await movieApi.getNowPlaying();
         setPopularData(popularResults);
         setDetailData(detailResults);
+        setNowPlayingData(nowPlayingResults);
       } catch (error) {
         console.error(error);
         setError(true);
@@ -41,10 +46,10 @@ function Home() {
       <Main>
         {error && <div>에러 발생</div>}
         {loading && <Loader />}
-        {!loading && popularData && detailData && (
+        {!loading && popularData && (
           <>
-            <DetailMovie isDetailPage={false} data={detailData} />
-            <MovieVideos sectionTitle="인기있는 스트리밍" data="" />
+            {detailData && <DetailMovie isDetailPage={false} data={detailData} />}
+            {nowPlayingData && <MovieVideos sectionTitle="상영중인 영화" data={nowPlayingData} />}
           </>
         )}
       </Main>
