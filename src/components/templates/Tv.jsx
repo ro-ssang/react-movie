@@ -4,6 +4,7 @@ import { tvApi } from '../../lib/api';
 import Loader from '../atoms/Loader';
 import DetailTv from '../modules/DetailTv';
 import Header from '../modules/Header';
+import TopTvShows from '../modules/TopTvShows';
 import TvVideos from '../modules/TvVideos';
 
 const Main = styled.main``;
@@ -56,9 +57,10 @@ function Tv() {
       <Main>
         {error && <div>에러 발생</div>}
         {loading && <Loader />}
-        {!loading && popularData && (
+        {!loading && (
           <>
             {detailData && <DetailTv isDetailPage={false} data={detailData} />}
+            {popularData && <TopTvShows sectionTitle="TOP10 컨텐츠" data={popularData} />}
             {topRatedData && <TvVideos sectionTitle="평점 높은 TV 프로그램" data={topRatedData} />}
             {airingTodayData && <TvVideos sectionTitle="오늘의 TV 프로그램" data={airingTodayData} />}
             {onTheAirData && <TvVideos sectionTitle="방영중인 TV 프로그램" data={onTheAirData} />}

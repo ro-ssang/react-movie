@@ -108,17 +108,8 @@ const ButtonLink = styled(Link)`
 `;
 
 function DetailTv({ match, isDetailPage, data }) {
-  const {
-    id,
-    original_name,
-    first_air_date,
-    episode_run_time,
-    genres,
-    vote_average,
-    overview,
-    poster_path,
-    backdrop_path,
-  } = data;
+  const { id, name, first_air_date, episode_run_time, genres, vote_average, overview, poster_path, backdrop_path } =
+    data;
 
   return (
     <Wrapper rank="01" showNumber={!isDetailPage} backdrop_path={BACKDROP_BASE_URL + backdrop_path}>
@@ -127,9 +118,9 @@ function DetailTv({ match, isDetailPage, data }) {
           <Cont fullpage={isDetailPage}>
             {data && (
               <>
-                <Poster poster_path={POSTER_BASE_URL + poster_path} alt={original_name} />
+                <Poster poster_path={POSTER_BASE_URL + poster_path} alt={name} />
                 <Info>
-                  <Title multiline={!isDetailPage}>{original_name}</Title>
+                  <Title multiline={!isDetailPage}>{name}</Title>
                   <ul>
                     <li>{first_air_date.substring(0, 4)}</li>
                     <li>{episode_run_time[0]}분</li>
