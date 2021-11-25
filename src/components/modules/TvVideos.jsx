@@ -47,7 +47,7 @@ function TvVideos({ match, sectionTitle, data, type }) {
                       link={getDetailPath(match.path, type) + '/' + id}
                       poster_path={POSTER_BASE_URL + poster_path}
                       title={original_name}
-                      release_date={first_air_date.replace(/-/g, '.')}
+                      release_date={first_air_date?.replace(/-/g, '.')}
                     />
                   );
                 })}
