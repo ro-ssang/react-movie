@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { movieApi } from '../../lib/api';
 import CastList from '../atoms/CastList';
 import Loader from '../atoms/Loader';
-
+import VideoList from '../atoms/VideoList';
 import DetailMovie from '../modules/DetailMovie';
 import Header from '../modules/Header';
 
@@ -13,7 +13,8 @@ const Main = styled.main``;
 function MovieDetail({ match }) {
   const [loading, setLoading] = useState(false);
   const [movieData, setMovieData] = useState(null);
-  const [castData, setCastResults] = useState(null);
+  const [castData, setCastData] = useState(null);
+  const [videoData, setVideoData] = useState(null);
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -28,8 +29,12 @@ function MovieDetail({ match }) {
         const {
           data: { cast: castResults },
         } = await movieApi.getCredits(movieId);
+        const {
+          data: { results: videoResults },
+        } = await movieApi.getVideos(movieId);
         setMovieData(movieResults);
-        setCastResults(castResults);
+        setCastData(castResults);
+        setVideoData(videoResults);
       } catch (error) {
         console.error(error);
         setError(true);
@@ -51,6 +56,7 @@ function MovieDetail({ match }) {
           <>
             {movieData && <DetailMovie isDetailPage={true} data={movieData} />}
             {castData && <CastList data={castData} />}
+            {videoData && <VideoList data={videoData} />}
           </>
         )}
       </Main>

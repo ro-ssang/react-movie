@@ -65,18 +65,12 @@ function CastList({ data }) {
           <Cont>
             <h2>출연진</h2>
             <ul>
-              {data &&
-                data.map((item) => {
-                  const { id, name, character, profile_path } = item;
-                  return (
-                    <CastItem
-                      key={id}
-                      name={name}
-                      character={character}
-                      profile_path={POSTER_BASE_URL + profile_path}
-                    />
-                  );
-                })}
+              {data.map((item) => {
+                const { id, name, character, profile_path } = item;
+                return (
+                  <CastItem key={id} name={name} character={character} profile_path={POSTER_BASE_URL + profile_path} />
+                );
+              })}
             </ul>
           </Cont>
         </Row>

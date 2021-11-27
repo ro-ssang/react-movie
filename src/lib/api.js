@@ -16,6 +16,7 @@ export const movieApi = {
   getTopRated: () => instance.get('/movie/top_rated', { params: { region: 'KR' } }),
   getSearch: (keyword) => instance.get('/search/movie', { params: { query: decodeURIComponent(keyword) } }),
   getCredits: (movieId) => instance.get(`/movie/${movieId}/credits`),
+  getVideos: (movieId) => instance.get(`/movie/${movieId}/videos`),
 };
 
 export const tvApi = {
@@ -26,4 +27,5 @@ export const tvApi = {
   getOnTheAir: () => instance.get('/tv/on_the_air'),
   getSearch: (keyword) => instance.get('/search/tv', { params: { query: decodeURIComponent(keyword) } }),
   getCredits: (tvId) => instance.get(`/tv/${tvId}/credits`),
+  getVideos: (tvId) => instance.get(`/tv/${tvId}/videos`),
 };

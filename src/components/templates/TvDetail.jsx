@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { tvApi } from '../../lib/api';
 import CastList from '../atoms/CastList';
 import Loader from '../atoms/Loader';
+import VideoList from '../atoms/VideoList';
 
 import DetailTv from '../modules/DetailTv';
 import Header from '../modules/Header';
@@ -14,6 +15,7 @@ function TvDetail({ match }) {
   const [loading, setLoading] = useState(false);
   const [tvData, setTvData] = useState(null);
   const [castData, setCastData] = useState(null);
+  const [videoData, setVideoData] = useState(null);
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -28,8 +30,12 @@ function TvDetail({ match }) {
         const {
           data: { cast: castResults },
         } = await tvApi.getCredits(tvId);
+        const {
+          data: { results: videoResults },
+        } = await tvApi.getVideos(tvId);
         setTvData(tvResults);
         setCastData(castResults);
+        setVideoData(videoResults);
       } catch (error) {
         console.error(error);
         setError(true);
@@ -51,6 +57,7 @@ function TvDetail({ match }) {
           <>
             {tvData && <DetailTv isDetailPage={true} data={tvData} />}
             {castData && <CastList data={castData} />}
+            {videoData && <VideoList data={videoData} />}
           </>
         )}
       </Main>
