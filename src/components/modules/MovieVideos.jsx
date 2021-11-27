@@ -24,7 +24,6 @@ const Cont = styled.div`
 
   ul {
     overflow: hidden;
-    overflow-x: scroll;
     display: flex;
     margin-top: 28px;
   }
