@@ -3,9 +3,9 @@ import { withRouter } from 'react-router';
 import styled from 'styled-components';
 import { tvApi } from '../../lib/api';
 import CastList from '../atoms/CastList';
+import Comment from '../atoms/Comment';
 import Loader from '../atoms/Loader';
 import VideoList from '../atoms/VideoList';
-
 import DetailTv from '../modules/DetailTv';
 import Header from '../modules/Header';
 
@@ -58,6 +58,7 @@ function TvDetail({ match }) {
             {tvData && <DetailTv isDetailPage={true} data={tvData} />}
             {castData && <CastList data={castData} />}
             {videoData && <VideoList data={videoData} />}
+            {tvData && <Comment data={tvData} />}
           </>
         )}
       </Main>

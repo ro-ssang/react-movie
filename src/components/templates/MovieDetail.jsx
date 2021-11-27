@@ -3,6 +3,7 @@ import { withRouter } from 'react-router';
 import styled from 'styled-components';
 import { movieApi } from '../../lib/api';
 import CastList from '../atoms/CastList';
+import Comment from '../atoms/Comment';
 import Loader from '../atoms/Loader';
 import VideoList from '../atoms/VideoList';
 import DetailMovie from '../modules/DetailMovie';
@@ -57,6 +58,7 @@ function MovieDetail({ match }) {
             {movieData && <DetailMovie isDetailPage={true} data={movieData} />}
             {castData && <CastList data={castData} />}
             {videoData && <VideoList data={videoData} />}
+            {movieData && <Comment data={movieData} />}
           </>
         )}
       </Main>
