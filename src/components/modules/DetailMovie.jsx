@@ -107,11 +107,15 @@ const ButtonLink = styled(Link)`
   font-weight: ${({ theme }) => theme.fonts.weight.light};
 `;
 
-function DetailMovie({ match, isDetailPage, data }) {
+function DetailMovie({ match, isDetailPage, data, rank }) {
   const { id, title, release_date, runtime, genres, vote_average, overview, poster_path, backdrop_path } = data;
 
   return (
-    <Wrapper rank="01" showNumber={!isDetailPage} backdrop_path={BACKDROP_BASE_URL + backdrop_path}>
+    <Wrapper
+      rank={rank < 10 ? '0' + rank : rank}
+      showNumber={!isDetailPage}
+      backdrop_path={BACKDROP_BASE_URL + backdrop_path}
+    >
       <Container>
         <Row>
           <Cont fullpage={isDetailPage}>

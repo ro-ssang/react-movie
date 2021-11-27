@@ -17,6 +17,7 @@ function Home() {
   const [upcomingData, setUpcomingData] = useState(null);
   const [topRatedData, setTopRatedData] = useState(null);
   const [error, setError] = useState(false);
+  const [movieIndex, setMovieIndex] = useState(0);
 
   useEffect(() => {
     async function fetchData() {
@@ -25,7 +26,7 @@ function Home() {
         const {
           data: { results: popularResults },
         } = await movieApi.getPopular();
-        const { data: detailResults } = await movieApi.getDetail(popularResults[0].id);
+        const { data: detailResults } = await movieApi.getDetail(popularResults[movieIndex].id);
         const {
           data: { results: nowPlayingResults },
         } = await movieApi.getNowPlaying();
@@ -49,7 +50,7 @@ function Home() {
     }
 
     fetchData();
-  }, []);
+  }, [movieIndex]);
 
   return (
     <>
@@ -59,8 +60,8 @@ function Home() {
         {loading && <Loader />}
         {!loading && (
           <>
-            {detailData && <DetailMovie isDetailPage={false} data={detailData} />}
-            {popularData && <TopMovies sectionTitle="TOP10 컨텐츠" data={popularData} />}
+            {detailData && <DetailMovie isDetailPage={false} data={detailData} rank={movieIndex + 1} />}
+            {popularData && <TopMovies sectionTitle="TOP10 컨텐츠" data={popularData} changeIndex={setMovieIndex} />}
             {nowPlayingData && <MovieVideos sectionTitle="상영중인 영화" data={nowPlayingData} />}
             {upcomingData && <MovieVideos sectionTitle="개봉 예정 영화" data={upcomingData} />}
             {topRatedData && <MovieVideos sectionTitle="평점 높은 영화" data={topRatedData} />}

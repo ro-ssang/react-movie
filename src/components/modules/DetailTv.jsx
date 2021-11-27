@@ -107,12 +107,16 @@ const ButtonLink = styled(Link)`
   font-weight: ${({ theme }) => theme.fonts.weight.light};
 `;
 
-function DetailTv({ match, isDetailPage, data }) {
+function DetailTv({ match, isDetailPage, data, rank }) {
   const { id, name, first_air_date, episode_run_time, genres, vote_average, overview, poster_path, backdrop_path } =
     data;
 
   return (
-    <Wrapper rank="01" showNumber={!isDetailPage} backdrop_path={BACKDROP_BASE_URL + backdrop_path}>
+    <Wrapper
+      rank={rank < 10 ? '0' + rank : rank}
+      showNumber={!isDetailPage}
+      backdrop_path={BACKDROP_BASE_URL + backdrop_path}
+    >
       <Container>
         <Row>
           <Cont fullpage={isDetailPage}>

@@ -17,6 +17,7 @@ function Tv() {
   const [airingTodayData, setAiringTodayData] = useState(null);
   const [onTheAirData, setOnTheAirData] = useState(null);
   const [error, setError] = useState(false);
+  const [tvIndex, setTvIndex] = useState(0);
 
   useEffect(() => {
     async function fetchData() {
@@ -25,7 +26,7 @@ function Tv() {
         const {
           data: { results: popularResults },
         } = await tvApi.getPopular();
-        const { data: detailResults } = await tvApi.getDetail(popularResults[0].id);
+        const { data: detailResults } = await tvApi.getDetail(popularResults[tvIndex].id);
         const {
           data: { results: topRatedResults },
         } = await tvApi.getTopRated();
@@ -49,7 +50,7 @@ function Tv() {
     }
 
     fetchData();
-  }, []);
+  }, [tvIndex]);
 
   return (
     <>
@@ -59,8 +60,8 @@ function Tv() {
         {loading && <Loader />}
         {!loading && (
           <>
-            {detailData && <DetailTv isDetailPage={false} data={detailData} />}
-            {popularData && <TopTvShows sectionTitle="TOP10 컨텐츠" data={popularData} />}
+            {detailData && <DetailTv isDetailPage={false} data={detailData} rank={tvIndex + 1} />}
+            {popularData && <TopTvShows sectionTitle="TOP10 컨텐츠" data={popularData} changeIndex={setTvIndex} />}
             {topRatedData && <TvVideos sectionTitle="평점 높은 TV 프로그램" data={topRatedData} />}
             {airingTodayData && <TvVideos sectionTitle="오늘의 TV 프로그램" data={airingTodayData} />}
             {onTheAirData && <TvVideos sectionTitle="방영중인 TV 프로그램" data={onTheAirData} />}

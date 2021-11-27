@@ -25,7 +25,7 @@ const Cont = styled.div`
   }
 `;
 
-function TopMovies({ match, sectionTitle, data }) {
+function TopMovies({ match, sectionTitle, data, changeIndex }) {
   const slicedData = data.slice(0, 10);
 
   return (
@@ -44,6 +44,7 @@ function TopMovies({ match, sectionTitle, data }) {
                     title={title}
                     rank={index}
                     poster_path={POSTER_BASE_URL + poster_path}
+                    changeIndex={changeIndex}
                   />
                 );
               })}

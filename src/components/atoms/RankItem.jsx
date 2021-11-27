@@ -49,10 +49,10 @@ const Wrapper = styled.li`
   }
 `;
 
-function RankItem({ link, title, rank, poster_path }) {
+function RankItem({ link, title, rank, poster_path, changeIndex }) {
   return (
-    <Wrapper>
-      <Link to={link}>
+    <Wrapper onClick={() => changeIndex(rank)}>
+      <Link to="#">
         <figure>
           {Numbers[rank]}
           <img src={poster_path} alt={title} />
