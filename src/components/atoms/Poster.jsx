@@ -5,6 +5,9 @@ const Wrapper = styled.div`
   min-width: 425px;
   height: 637px;
   background-color: #ccc;
+  img {
+    height: 100%;
+  }
 `;
 
 function Poster({ poster_path, alt }) {
